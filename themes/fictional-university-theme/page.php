@@ -16,7 +16,7 @@ while(have_posts()){
 
     <div class="metabox metabox--position-up metabox--with-home-link">
   <?php 
-  $theParent = wp_get_post_parent_id(get_the_ID());
+  $theParent = wp_get_post_parent_id(get_the_ID());//pobiera wartość jeżeli nie ma rodzica to 0 jeżeli ma to id rodzica
 if ($theParent){
 ?>
 <p><a class="metabox__blog-home-link" href="<?php echo get_permalink($theParent); ?>"><i class="fa fa-home" aria-hidden="true"></i> Back to <?php echo get_the_title($theParent); ?></a> <span class="metabox__main"><?php the_title();?></span></p>
@@ -41,8 +41,8 @@ if ($theParent){
       $testArray = get_pages(array(
         'child_of'=> get_the_ID(),
       ));
-      echo $testArray;
-      
+     
+      // sprawdzamy czy bieżąca strona ma rodzica lub jeśli jest rodzicem
       if ($theParent or  $testArray){ ?>
     <!-- menu z linkami do strony podrzędnej unit17 -->
     <div class="page-links">
