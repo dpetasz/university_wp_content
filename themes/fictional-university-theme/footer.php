@@ -13,18 +13,18 @@
                 <div class="site-footer__col-two">
                     <h3 class="headline headline--small">Explore</h3>
                     <nav class="nav-list">
-                        <?php
+                        <!-- <?php
                 // funkcja odpowiada za pobieranie menu z wordpresss, ktorą stworzyliśmy w functions.php nazwa z pierwszego argumentu
-                        wp_nav_menu(array(
-                          'theme_location' => 'footerMenuExploreLocation',
-                        ));
-                        ?>
-                        <!-- <ul>
+                                wp_nav_menu(array(
+                                    'theme_location' => 'footerMenuExploreLocation',
+                                ));
+                                ?> -->
+                        <ul>
                             <li><a href='<?php echo site_url('/about-us')  ?>'>About Us</a></li>
                             <li><a href="#">Programs</a></li>
                             <li><a href="#">Events</a></li>
                             <li><a href="#">Campuses</a></li>
-                        </ul> -->
+                        </ul>
                     </nav>
                 </div>
 
@@ -32,17 +32,17 @@
                     <h3 class="headline headline--small">Learn</h3>
                     <nav class="nav-list">
 
-                        <?php
+                        <!-- <?php
                 // funkcja odpowiada za pobieranie menu z wordpresss, ktorą stworzyliśmy w functions.php nazwa z pierwszego argumentu
-                        wp_nav_menu(array(
-                          'theme_location' => 'footerMenuLearnLocation',
-                        ));
-                        ?>
-                        <!-- <ul>
-                <li><a href="#">Legal</a></li>
-                <li><a href='<?php echo site_url('/polityka-prywatnosci')  ?>'>Privacy</a></li>
-                <li><a href="#">Careers</a></li>
-              </ul> -->
+                                wp_nav_menu(array(
+                                    'theme_location' => 'footerMenuLearnLocation',
+                                ));
+                                ?> -->
+                        <ul>
+                            <li><a href="#">Legal</a></li>
+                            <li><a href='<?php echo site_url('/polityka-prywatnosci')  ?>'>Privacy</a></li>
+                            <li><a href="#">Careers</a></li>
+                        </ul>
                     </nav>
                 </div>
             </div>

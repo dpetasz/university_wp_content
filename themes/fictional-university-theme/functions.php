@@ -12,9 +12,12 @@ add_action('wp_enqueue_scripts', 'university_files');
 // dodanie tytułu na pasku strony
 function university_title()
 {
-    register_nav_menu('footerMenuExploreLocation', 'Menu Footer Explore');
-    register_nav_menu('footerMenuLearnLocation', 'Menu Footer Learn');
-    register_nav_menu('headerMenuLocation', 'Menu Header');
+    // Dodawanie dynamicznego menu
+    // register_nav_menu('footerMenuExploreLocation', 'Menu Footer Explore');
+    // register_nav_menu('footerMenuLearnLocation', 'Menu Footer Learn');
+    // register_nav_menu('headerMenuLocation', 'Menu Header');
+
+
     add_theme_support('title-tag');
 }
 add_action('after_setup_theme', 'university_title');

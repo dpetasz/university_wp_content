@@ -23,19 +23,25 @@
             <div class="site-header__menu group">
                 <nav class="main-navigation">
 
-                    <?php
+                    <!-- 
+                        <?php
                 // funkcja odpowiada za pobieranie menu z wordpresss, ktorą stworzyliśmy w functions.php nazwa z pierwszego argumentu
-                    wp_nav_menu(array(
-                        'theme_location' => 'headerMenuLocation',
-                    ));
-                    ?>
-                    <!-- <ul>
-                        <li><a href='<?php echo site_url('/about-us')  ?>'>About Us</a></li>
+                        wp_nav_menu(array(
+                            'theme_location' => 'headerMenuLocation',
+                        ));
+                        ?> -->
+                    <ul>
+                        <!-- W instrukcji if sprawdzamy czy to jest ta strona lub ta stroma ma rodzica o takim id
+                    i wtedy przypisujemy klasę odpowiadającą zmianie koloru napisu About us
+                    podobną instrukcję zastosujemy również dla innydh li -->
+                        <li <?php if (is_page('about-us') or wp_get_post_parent_id(0) == 12) echo 'class = "current-menu-item"' ?>><a href='<?php echo site_url('/about-us')  ?>'>About Us <?php echo wp_get_post_parent_id(0) . wp_get_post_parent_id(get_the_ID())  ?></a></li>
                         <li><a href="#">Programs</a></li>
                         <li><a href="#">Events</a></li>
                         <li><a href="#">Campuses</a></li>
                         <li><a href="#">Blog</a></li>
-                    </ul> -->
+
+
+                    </ul>
                 </nav>
                 <div class="site-header__util">
                     <a href="#" class="btn btn--small btn--orange float-left push-right">Login</a>
