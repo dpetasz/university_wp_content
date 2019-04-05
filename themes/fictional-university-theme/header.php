@@ -7,8 +7,6 @@
     <!-- dynamicznie określenie tagi -->
     <meta charset="<?php bloginfo('charset'); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
     <?php wp_head(); ?>
 </head>
 
@@ -25,7 +23,7 @@
 
                     <!-- 
                         <?php
-                // funkcja odpowiada za pobieranie menu z wordpresss, ktorą stworzyliśmy w functions.php nazwa z pierwszego argumentu
+                        // funkcja odpowiada za pobieranie menu z wordpresss, ktorą stworzyliśmy w functions.php nazwa z pierwszego argumentu
                         wp_nav_menu(array(
                             'theme_location' => 'headerMenuLocation',
                         ));
@@ -38,8 +36,11 @@
                         <li><a href="#">Programs</a></li>
                         <li><a href="#">Events</a></li>
                         <li><a href="#">Campuses</a></li>
-                        <li><a href="#">Blog</a></li>
-
+                        <!-- instrukcja sprawdza czy typem jest post i dodaje klasę aby był kolor aktywnej strony -->
+                        <li <?php if (get_post_type() == 'post') echo 'class = "current-menu-item"' ?>><a href="<?php echo site_url('/blog'); ?>">Blog</a></li>
+                        <!--
+                        tutaj sprawdzam jaki jest typ może wyświetlić post lub page i jeżeli stworzymy inne typy to też będziemy mogli tu sprawdzić  
+                        <?php echo get_post_type() ?> -->
 
                     </ul>
                 </nav>
@@ -50,4 +51,4 @@
                 </div>
             </div>
         </div>
-    </header> 
+    </header>
