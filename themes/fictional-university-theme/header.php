@@ -29,9 +29,8 @@
                         ));
                         ?> -->
                     <ul>
-                        <!-- W instrukcji if sprawdzamy czy to jest ta strona lub ta stroma ma rodzica o takim id
-                    i wtedy przypisujemy klasę odpowiadającą zmianie koloru napisu About us
-                    podobną instrukcję zastosujemy również dla innydh li -->
+                        <!-- W instrukcji if sprawdzamy czy to jest ta strona lub ta strona ma rodzica o takim id
+                    i wtedy przypisujemy klasę odpowiadającą zmianie koloru napisu About us -->
                         <li <?php if (is_page('about-us') or wp_get_post_parent_id(0) == 12) echo 'class = "current-menu-item"' ?>><a href='<?php echo site_url('/about-us')  ?>'>About Us <?php echo wp_get_post_parent_id(0) . wp_get_post_parent_id(get_the_ID())  ?></a></li>
                         <li><a href="#">Programs</a></li>
                         <li><a href="#">Events</a></li>
