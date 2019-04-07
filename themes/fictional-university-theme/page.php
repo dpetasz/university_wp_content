@@ -35,7 +35,7 @@ while (have_posts()) {
     </div>
 
     <!-- funkcja sprawdzająca czy strona posiada dzieci, 
-        jeżeli nie to nie będzie wyświetlane menu z podstronami -->
+            jeżeli nie to nie będzie wyświetlane menu z podstronami -->
 
     <?php
     // zwraca listę stron z pamięci;
@@ -49,9 +49,8 @@ while (have_posts()) {
       <!-- menu z linkami do strony podrzędnej unit17 -->
       <div class="page-links">
         <!--link do strony, która zawiera dzieci dynamicznie przypisanie tytułu strony-->
-        <h2 class="page-links__title"><a href="<?php echo get_permalink($theParent) ?>"><?php echo get_the_title($theParent)
-
-                                                                                        ?></a></h2>
+        <h2 class="page-links__title"><a href="<?php echo get_permalink($theParent) ?>"><?php echo get_the_title($theParent) ?>
+          </a></h2>
         <ul class="min-list">
           <?php
           // funkcja bez argumentów wyświetla nam wszystkie strony, a chodzi byśmy widzieli 
@@ -73,7 +72,7 @@ while (have_posts()) {
 
           ?>
           <!-- <li class="current_page_item"><a href="#">Our History</a></li>
-            <li><a href="#">Our Goals</a></li> -->
+                    <li><a href="#">Our Goals</a></li> -->
         </ul>
       </div>
     <?php  } ?>

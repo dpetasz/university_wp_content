@@ -20,4 +20,6 @@ function university_title()
 
     add_theme_support('title-tag');
 }
+
+// dodawanie niestandardowego typu postów
 add_action('after_setup_theme', 'university_title');
