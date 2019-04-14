@@ -4,6 +4,8 @@ function university_post_types()
     //    pierwszy argument funkcji to nazwa dla nowego typu
     // drugi argument to tablica różnych opcji które opisują niestandardowy post
     register_post_type('event', array(
+        'supports' => array('title', 'editor', 'excerpt'), //, 'custom-fields' - służy do dodawania niestandardowych pól, ale my będziemy używac wtyczki ACF i musimy usunąć to z tablicy
+        'has_archive' => true, //parametr, który wiąże się z archiwum tego postu
         'public' => true, //dzięki temu parametrowi będziemy go widzieli w administratorze wordpressa
         'labels' => array( //etykity w których możemy dodać nazwę typu (jeżeli tego nie zrobimy to nazwa domyślna będzie "Wpisy" )
             'name' => 'Wydarzenia',
