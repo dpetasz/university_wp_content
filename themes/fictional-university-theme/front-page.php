@@ -17,17 +17,36 @@
             <h2 class="headline headline--small-plus t-center">Upcoming Events</h2>
 
             <?php
+            $today = date('dmY'); //funkcja pobiera dzisiejszą datę
+            // echo 'dzisiaj jest:' . $today;
             $homepageEvents = new WP_Query(array(
-                'posts_per_page' => 2,
-                'post_type' => 'event'
+                'posts_per_page' => -1,
+                'post_type' => 'event',
+                'orderby' => 'meta_value', //pożądkowanie niestandardowe gdzie potrzebujemy podać jeszcze z jakiego pola chce kożystać
+                "meta_key" => 'event_date', //tutaj podajemy to pole niestandardowe które stworzyliśmy
+                'order' => 'ASC',
+                'meta_query' => array( //tutaj jest niestandardowe zapytanie które pobiera tylko te dane które spełniają poniższy warunek
+                    'key' => 'event_date', //dane z niestandardowego pola event_date
+                    'compare' => '>=', //porównanie z 
+                    'value' => $today, //wartością daty
+                    'type' => 'numeric' //i na wszelki wypadek podajemy że jest to typ numeryczny
+                )
 
             ));
             while ($homepageEvents->have_posts()) {
-                $homepageEvents->the_post(); ?>
+                $homepageEvents->the_post();
+                $eventDate = new DateTime(get_field('event_date')); //ustawiamy datę z niestandardowego pola event_date (musimy ustawić format zwracanej daty na d-m-Y H:i:s) czas to zależy czy chcemy
+                echo $eventDate->format('H:m'); //wyświetlam godzinę dla przykładu
+                ?>
                 <div class="event-summary">
                     <a class="event-summary__date t-center" href="#">
-                        <span class="event-summary__month">Mar</span>
-                        <span class="event-summary__day">25</span>
+                        <span class="event-summary__month">
+                            <?php
+
+                            echo $eventDate->format('M')
+                            ?>
+                        </span>
+                        <span class="event-summary__day"><?php echo $eventDate->format('d') ?></span>
                     </a>
                     <div class="event-summary__content">
                         <h5 class="event-summary__title headline headline--tiny"><a href="<?php the_permalink() ?>"><?php the_title() ?></a></h5>
@@ -40,7 +59,11 @@
 
 
 
-            <p class="t-center no-margin"><a href="#" class="btn btn--blue">View All Events</a></p>
+            <p class="t-center no-margin"><a href="
+            <?php
+            echo get_post_type_archive_link('event') //dynamicznie ustawia link do archiwów i jako argument podajemy nazwę typu
+            ?>
+            " class="btn btn--blue">View All Events</a></p>
 
         </div>
     </div>
