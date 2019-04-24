@@ -22,3 +22,28 @@ function university_title()
 }
 
 add_action('after_setup_theme', 'university_title');
+
+//manipulowanie zapytaniami domyślnymi
+function university_adjust_queries($query)
+{
+
+    //$query->set('posts_per_page', 1); //wyświetla nam tylko po jednym poście stronie itd a tego nie chcemy i jest to tylko przykład jaki to ma zasięg
+    //warunek tylko wtedy gdy znajdujemy się na końcu naszej strony czyli nie jesteś w administracji naszej strony
+    //oraz jest typem archiwum event
+    //i jeżeli jest tylko domyślnym zapytaniem opartym url
+    if (!is_admin() && is_post_type_archive('event') && $query->is_main_query()) {
+        $today = date('Ymd');
+        $query->set("meta_key", 'event_date');
+        $query->set('order', 'ASC');
+        $query->set('orderby', 'meta_value_num');
+        $query->set('meta_query', array(
+            array(
+                'key' => 'event_date',
+                'compare' => '>=',
+                'value' => $today,
+                'type' => 'numeric'
+            )
+        ));
+    }
+}
+add_action("pre_get_posts", 'university_adjust_queries');
