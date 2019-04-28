@@ -7,7 +7,7 @@
         <h1 class="headline headline--large">Welcome!</h1>
         <h2 class="headline headline--medium">We think you&rsquo;ll like it here.</h2>
         <h3 class="headline headline--small">Why don&rsquo;t you check out the <strong>major</strong> you&rsquo;re interested in?</h3>
-        <a href="#" class="btn btn--large btn--blue">Find Your Major</a>
+        <a href="<?php echo get_post_type_archive_link('program') ?>" class="btn btn--large btn--blue">Find Your Major</a>
     </div>
 </div>
 
@@ -17,22 +17,25 @@
             <h2 class="headline headline--small-plus t-center">Upcoming Events</h2>
 
             <?php
-            $today = date('dmY'); //funkcja pobiera dzisiejszą datę
+            $today = date('Ymd'); //funkcja pobiera dzisiejszą datę
             // echo 'dzisiaj jest:' . $today;
             $homepageEvents = new WP_Query(array(
-                'posts_per_page' => -1,
+                'posts_per_page' => 2,
                 'post_type' => 'event',
-                'orderby' => 'meta_value', //pożądkowanie niestandardowe gdzie potrzebujemy podać jeszcze z jakiego pola chce kożystać
                 "meta_key" => 'event_date', //tutaj podajemy to pole niestandardowe które stworzyliśmy
+                'orderby' => 'meta_value_num', //pożądkowanie niestandardowe gdzie potrzebujemy podać jeszcze z jakiego pola chce kożystać
                 'order' => 'ASC',
                 'meta_query' => array( //tutaj jest niestandardowe zapytanie które pobiera tylko te dane które spełniają poniższy warunek
-                    'key' => 'event_date', //dane z niestandardowego pola event_date
-                    'compare' => '>=', //porównanie z 
-                    'value' => $today, //wartością daty
-                    'type' => 'numeric' //i na wszelki wypadek podajemy że jest to typ numeryczny
+                    array(
+                        'key' => 'event_date', //dane z niestandardowego pola event_date
+                        'compare' => '>=', //porównanie z 
+                        'value' => $today, //wartością daty
+                        'type' => 'numeric' //i na wszelki wypadek podajemy że jest to typ numeryczny
+                    )
                 )
 
             ));
+            // print_r($homepageEvents);//wyświetla zawartość argumentu
             while ($homepageEvents->have_posts()) {
                 $homepageEvents->the_post();
                 $eventDate = new DateTime(get_field('event_date')); //ustawiamy datę z niestandardowego pola event_date (musimy ustawić format zwracanej daty na d-m-Y H:i:s) czas to zależy czy chcemy

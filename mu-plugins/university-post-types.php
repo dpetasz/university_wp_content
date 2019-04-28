@@ -1,10 +1,12 @@
 <?php
 function university_post_types()
 {
+    // event post type
     //    pierwszy argument funkcji to nazwa dla nowego typu
     // drugi argument to tablica różnych opcji które opisują niestandardowy post
     register_post_type('event', array(
         'supports' => array('title', 'editor', 'excerpt'), //, 'custom-fields' - służy do dodawania niestandardowych pól, ale my będziemy używac wtyczki ACF i musimy usunąć to z tablicy
+        'rewrite' => array('slug' => 'event'), //zmienia nam domyślną ścieżkę url i możemy decydować jaki napis będzie widniał (u nas będzie to : http://localhost/university/wydarzenia/jakieś-wydarzenie-które-sobie-dodamy/)
         'has_archive' => true, //parametr, który wiąże się z archiwum tego postu
         'public' => true, //dzięki temu parametrowi będziemy go widzieli w administratorze wordpressa
         'labels' => array( //etykity w których możemy dodać nazwę typu (jeżeli tego nie zrobimy to nazwa domyślna będzie "Wpisy" )
@@ -15,6 +17,36 @@ function university_post_types()
             'singular_name' => 'Wydarzenie',
         ),
         'menu_icon' => 'dashicons-grid-view' //dodajemy nową ikonę aby się rozrużniało nasze wydarzenie
+    ));
+
+    //program post type
+    register_post_type('program', array(
+        'supports' => array('title', 'editor'),
+        'rewrite' => array('slug' => 'programs'),
+        'has_archive' => true,
+        'public' => true,
+        'labels' => array(
+            'name' => 'Programy',
+            'add_new_item' => 'Dodaj nowy program',
+            'edit_item' => 'Edytuj program',
+            'all_items' => 'Wszystkie programy',
+            'singular_name' => 'Program',
+        ),
+        'menu_icon' => 'dashicons-awards'
+    ));
+
+    //professor post type
+    register_post_type('professor', array(
+        'supports' => array('title', 'editor'),
+        'public' => true,
+        'labels' => array(
+            'name' => 'Professor',
+            'add_new_item' => 'Dodaj nowego profesora',
+            'edit_item' => 'Edytuj profesora',
+            'all_items' => 'Wszyscy profesorowie',
+            'singular_name' => 'Professor',
+        ),
+        'menu_icon' => 'dashicons-welcome-learn-more'
     ));
 }
 // hak o nazwie init daje nam możliwość dodania nowego typu postu, drugi argument to funkcja, której nazwa jest dowolna ale niech ma jakiś sens
