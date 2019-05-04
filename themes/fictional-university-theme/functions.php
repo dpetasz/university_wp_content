@@ -10,18 +10,20 @@ function university_files()
 add_action('wp_enqueue_scripts', 'university_files');
 
 // dodanie tytułu na pasku strony
-function university_title()
+function university_features()
 {
   // Dodawanie dynamicznego menu
   // register_nav_menu('footerMenuExploreLocation', 'Menu Footer Explore');
   // register_nav_menu('footerMenuLearnLocation', 'Menu Footer Learn');
   // register_nav_menu('headerMenuLocation', 'Menu Header');
 
-
-  add_theme_support('title-tag');
+  add_theme_support('title-tag'); //dodaje aktualny (dynamicznie) tytuł nagłówka strony
+  add_theme_support('post-thumbnails'); //dodawanie obrazków
+  add_image_size('professorLandscape', 400, 260, true); //dodajemy nowe wymiary(1.nazwa 2.szerokość 3. wysokość 4.czy przyciąć)
+  add_image_size('professorPortrait', 480, 650, true);
 }
 
-add_action('after_setup_theme', 'university_title');
+add_action('after_setup_theme', 'university_features');
 
 //manipulowanie zapytaniami domyślnymi
 function university_adjust_queries($query)
