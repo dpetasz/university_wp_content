@@ -1,31 +1,19 @@
-<?php get_header(); ?>
+<?php get_header();
+pageBanner(array(
+    // to są instrukcje do sprawdzania czy jesteśmy na kategoriach czy w autorze i jeszcze możemy dodać daty itd
+    //  if (is_category()) {
+    //     single_cat_title();
+    // } elseif (is_author()) {
+    //     echo 'Posts by ';
+    //     the_author();
+    // }
+    //aby uniknąć tylu insturkcji możemy użyć do tego tej funkcji, która się zajmie sprawdzeniem tego wszystkiego co robiliśmy wcześniej
+    'title' => get_the_archive_title(),
+    'subtitle' => get_the_archive_description(), // ta funkcja pobiera aktualny opis w zależności gdzie jesteśmy (autor, kategorie, daty itd.).
+))
+?>
 
-<div class="page-banner">
-    <div class="page-banner__bg-image" style="background-image: url(<?php echo get_theme_file_uri('images/ocean.jpg') ?>);"></div>
-    <div class="page-banner__content container container--narrow">
-        <h1 class="page-banner__title">
-            <?php
-            // to są instrukcje do sprawdzania czy jesteśmy na kategoriach czy w autorze i jeszcze możemy dodać daty itd
-            //  if (is_category()) {
-            //     single_cat_title();
-            // } elseif (is_author()) {
-            //     echo 'Posts by ';
-            //     the_author();
-            // }
-            //aby uniknąć tylu insturkcji możemy użyć do tego tej funkcji, która się zajmie sprawdzeniem tego wszystkiego co robiliśmy wcześniej
-            the_archive_title();
 
-            ?>
-        </h1>
-        <div class="page-banner__intro">
-            <p>
-                <?php
-                // ta funkcja pobiera aktualny opis w zależności gdzie jesteśmy (autor, kategorie, daty itd.).
-                the_archive_description(); ?>
-            </p>
-        </div>
-    </div>
-</div>
 <div class="container container--narrow page-section">
     <?php while (have_posts()) {
         the_post(); ?>

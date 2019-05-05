@@ -1,41 +1,23 @@
 <?php
 get_header();
 while (have_posts()) {
-  the_post(); ?>
-  <div class="page-banner">
-    <div class="page-banner__bg-image" style="background-image: url(<?php echo get_theme_file_uri('images/ocean.jpg') ?>);"></div>
-    <div class="page-banner__content container container--narrow">
-      <h1 class="page-banner__title"><?php the_title(); ?></h1>
-      <div class="page-banner__intro">
-        <p>NIE ZAPOMNIJ ZASTĄPIĆ MNIE PÓŹNIEJ</p>
-      </div>
-    </div>
-  </div>
+  the_post();
+  pageBanner();
+  ?>
+
 
   <div class="container container--narrow page-section">
 
-    <div class="metabox metabox--position-up metabox--with-home-link">
-      <?php
-      $theParent = wp_get_post_parent_id(get_the_ID()); //pobiera wartość jeżeli nie ma rodzica to 0 jeżeli ma to id rodzica
-      if ($theParent) {
-        ?>
-        <div class="metabox metabox--position-up metabox--with-home-link">
-          <p><a class="metabox__blog-home-link" href="<?php echo get_permalink($theParent); ?>"><i class="fa fa-home" aria-hidden="true"></i> Back to <?php echo get_the_title($theParent); ?></a> <span class="metabox__main"><?php the_title(); ?></span></p>
-        </div>
-      <?php
-    } else {
-      ?>
-        <!-- zwracamy tytuł posta -->
-        <p> <span class="metabox__main"><?php the_title(); ?></span></p>
-
-      <?php
-    }
-
-    ?>
-    </div>
-
+    <?php
+    $theParent = wp_get_post_parent_id(get_the_ID()); //pobiera wartość jeżeli nie ma rodzica to 0 jeżeli ma to id rodzica
+    if ($theParent) { ?>
+      <div class="metabox metabox--position-up metabox--with-home-link">
+        <p><a class="metabox__blog-home-link" href="<?php echo get_permalink($theParent); ?>"><i class="fa fa-home" aria-hidden="true"></i> Back to <?php echo get_the_title($theParent); ?></a> <span class="metabox__main"><?php the_title(); ?></span></p>
+      </div>
+    <?php }
+  ?>
     <!-- funkcja sprawdzająca czy strona posiada dzieci, 
-            jeżeli nie to nie będzie wyświetlane menu z podstronami -->
+                                                jeżeli nie to nie będzie wyświetlane menu z podstronami -->
 
     <?php
     // zwraca listę stron z pamięci;
@@ -72,7 +54,7 @@ while (have_posts()) {
 
           ?>
           <!-- <li class="current_page_item"><a href="#">Our History</a></li>
-                    <li><a href="#">Our Goals</a></li> -->
+                                                                                            <li><a href="#">Our Goals</a></li> -->
         </ul>
       </div>
     <?php  } ?>

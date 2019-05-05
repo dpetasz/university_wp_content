@@ -1,16 +1,13 @@
 <?php
 
-get_header(); ?>
+get_header();
+pageBanner(array(
+    'title' => 'Past Events',
+    'subtitle' => 'Podsumowanie naszych wydarzeń z przeszłości.'
+))
+?>
 
-<div class="page-banner">
-    <div class="page-banner__bg-image" style="background-image: url(<?php echo get_theme_file_uri('/images/ocean.jpg') ?>);"></div>
-    <div class="page-banner__content container container--narrow">
-        <h1 class="page-banner__title">Past Events</h1>
-        <div class="page-banner__intro">
-            <p>Podsumowanie naszych wydarzeń z przeszłości.</p>
-        </div>
-    </div>
-</div>
+
 
 <div class="container container--narrow page-section">
     <?php
@@ -24,12 +21,12 @@ get_header(); ?>
         'orderby' => 'meta_value_num', //pożądkowanie niestandardowe gdzie potrzebujemy podać jeszcze z jakiego pola chce kożystać
         'order' => 'ASC',
         //tutaj jest niestandardowe zapytanie które pobiera tylko te dane które spełniają poniższy warunek
-        'meta_query' => array( 
+        'meta_query' => array(
             array(
-            'key' => 'event_date', //dane z niestandardowego pola event_date
-            'compare' => '<', //porównanie z 
-            'value' => $today, //wartością daty
-            'type' => 'numeric' //i na wszelki wypadek podajemy że jest to typ numeryczny
+                'key' => 'event_date', //dane z niestandardowego pola event_date
+                'compare' => '<', //porównanie z 
+                'value' => $today, //wartością daty
+                'type' => 'numeric' //i na wszelki wypadek podajemy że jest to typ numeryczny
             )
         )
     ));
