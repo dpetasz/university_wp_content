@@ -1,6 +1,23 @@
 <?php
 function university_post_types()
 {
+    // campus post type
+    register_post_type('campus', array(
+        'supports' => array('title', 'editor', 'excerpt'), //, 'custom-fields' - służy do dodawania niestandardowych pól, ale my będziemy używac wtyczki ACF i musimy usunąć to z tablicy
+        'rewrite' => array('slug' => 'campuses'), //zmienia nam domyślną ścieżkę url i możemy decydować jaki napis będzie widniał (u nas będzie to : http://localhost/university/wydarzenia/jakieś-wydarzenie-które-sobie-dodamy/)
+        'has_archive' => true, //parametr, który wiąże się z archiwum tego postu
+        'public' => true, //dzięki temu parametrowi będziemy go widzieli w administratorze wordpressa
+        'labels' => array( //etykity w których możemy dodać nazwę typu (jeżeli tego nie zrobimy to nazwa domyślna będzie "Wpisy" )
+            'name' => 'Campuses',
+            'add_new_item' => 'Dodaj nowy Campus', //to nam daje wyświetlenie w tytule gdy dodajemy nowe wydarzenie
+            'edit_item' => 'Edytuj Campus', //gdy wejdziemy do utworzonego wydarzenia to będziemy widzieć ten tytuł
+            'all_items' => 'Wszystkie Campuses', //na pasku zmienia domyślne Wydarzenia na to co podajemy
+            'singular_name' => 'Campus',
+        ),
+        'menu_icon' => 'dashicons-location-alt' //dodajemy nową ikonę aby się rozrużniało nasze wydarzenie
+    ));
+
+
     // event post type
     //    pierwszy argument funkcji to nazwa dla nowego typu
     // drugi argument to tablica różnych opcji które opisują niestandardowy post
