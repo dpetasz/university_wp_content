@@ -92,6 +92,25 @@ while (have_posts()) {
                     get_template_part('template-parts/content-event');
                 }
             }
+            wp_reset_postdata();
+            $realatedCampuses = get_field('related_campus');
+
+            if ($realatedCampuses) { ?>
+                    <hr class="section-break">
+                    <h3 class="headline headline--medium"><?php the_title() ?> is Available At These Campuses:</h3>
+                    <ul class="min-list link-list">
+
+                        <?php
+                        foreach ($realatedCampuses as $campus) {
+                            ?>
+                            <li><a href="<?php echo get_the_permalink($campus) ?>"><?php echo get_the_title($campus) ?></a></li>
+
+                        <?php
+                    }
+                    ?>
+                    </ul>
+                <?php }
+
             ?>
 
         </div>
