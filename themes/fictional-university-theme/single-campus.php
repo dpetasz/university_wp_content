@@ -63,41 +63,7 @@ while (have_posts()) {
             wp_reset_postdata();
             // the_ID();
 
-            $today = date('Ymd'); //funkcja pobiera dzisiejszą datę
-            // echo 'dzisiaj jest:' . $today;
-            $homepageEvents = new WP_Query(array(
-                'posts_per_page' => 2,
-                'post_type' => 'event',
-                "meta_key" => 'event_date', //tutaj podajemy to pole niestandardowe które stworzyliśmy
-                'orderby' => 'meta_value_num', //pożądkowanie niestandardowe gdzie potrzebujemy podać jeszcze z jakiego pola chce kożystać
-                'order' => 'ASC',
-                'meta_query' => array( //tutaj jest niestandardowe zapytanie które pobiera tylko te dane które spełniają poniższy warunek
-                    array(
-                        'key' => 'event_date', //dane z niestandardowego pola event_date
-                        'compare' => '>=', //porównanie z 
-                        'value' => $today, //wartością daty
-                        'type' => 'numeric' //i na wszelki wypadek podajemy że jest to typ numeryczny
-                    ),
-                    array(
-                        'key' => 'related_programs', //dane z niestandardowego pola related_programs
-                        'compare' => 'LIKE', //porównanie takie jak 
-                        'value' => '"' . get_the_ID() . '"', //numer bierzącego wpistu i musimy to umieścić w cudzysłowie, a wyjaśnione jest to w unit 38 18 min
-                    )
-                )
 
-            ));
-
-            if ($homepageEvents->have_posts()) { //sprawdza czy są jakieś posty
-                echo '<hr class="section-break">';
-                echo '<h3 class="headline headline--medium">Upcoming ' . get_the_title() .  ' Events</h3>';
-
-                // print_r(get_the_ID());
-                // print_r($homepageEvents);//wyświetla zawartość argumentu
-                while ($homepageEvents->have_posts()) {
-                    $homepageEvents->the_post();
-                    get_template_part('template-parts/content-event');
-                }
-            }
             ?>
 
         </div>

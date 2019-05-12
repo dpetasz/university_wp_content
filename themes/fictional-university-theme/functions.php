@@ -17,13 +17,13 @@ function pageBanner($args = null)
   ?>
   <div class="page-banner">
     <div class="page-banner__bg-image" style="background-image: url( 
-                                                                      <?php
-                                                                      // $pageBannerImage = get_field('obraz_banner_background_strony');
-                                                                      // echo $pageBannerImage['url'];
-                                                                      // echo $pageBannerImage['sizes']['pageBanner'];
-                                                                      // echo get_field('obraz_banner_background_strony')['sizes']['pageBanner'];
-                                                                      echo $args['photo'];
-                                                                      ?>);"></div>
+                                                                          <?php
+                                                                          // $pageBannerImage = get_field('obraz_banner_background_strony');
+                                                                          // echo $pageBannerImage['url'];
+                                                                          // echo $pageBannerImage['sizes']['pageBanner'];
+                                                                          // echo get_field('obraz_banner_background_strony')['sizes']['pageBanner'];
+                                                                          echo $args['photo'];
+                                                                          ?>);"></div>
     <div class="page-banner__content container container--narrow">
       <h1 class="page-banner__title"><?php echo $args['title'] ?></h1>
       <div class="page-banner__intro">
@@ -87,6 +87,11 @@ function university_adjust_queries($query)
   if (!is_admin() and is_post_type_archive('program') and is_main_query()) {
     $query->set('orderby', 'title');
     $query->set('order', 'ASC');
+    $query->set('posts_per_page', -1);
+  }
+  //zapytanie dla campus aby wyświetlał wszystkie kampusy a nie 10 defoult
+  if (!is_admin() and is_post_type_archive('campus') and is_main_query()) {
+
     $query->set('posts_per_page', -1);
   }
 }
