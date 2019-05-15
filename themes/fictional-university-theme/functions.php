@@ -17,13 +17,13 @@ function pageBanner($args = null)
   ?>
   <div class="page-banner">
     <div class="page-banner__bg-image" style="background-image: url( 
-                                                                          <?php
-                                                                          // $pageBannerImage = get_field('obraz_banner_background_strony');
-                                                                          // echo $pageBannerImage['url'];
-                                                                          // echo $pageBannerImage['sizes']['pageBanner'];
-                                                                          // echo get_field('obraz_banner_background_strony')['sizes']['pageBanner'];
-                                                                          echo $args['photo'];
-                                                                          ?>);"></div>
+                                                                                <?php
+                                                                                // $pageBannerImage = get_field('obraz_banner_background_strony');
+                                                                                // echo $pageBannerImage['url'];
+                                                                                // echo $pageBannerImage['sizes']['pageBanner'];
+                                                                                // echo get_field('obraz_banner_background_strony')['sizes']['pageBanner'];
+                                                                                echo $args['photo'];
+                                                                                ?>);"></div>
     <div class="page-banner__content container container--narrow">
       <h1 class="page-banner__title"><?php echo $args['title'] ?></h1>
       <div class="page-banner__intro">
@@ -42,6 +42,10 @@ function university_files()
   wp_enqueue_style('google-font', '//fonts.googleapis.com/css?family=Roboto+Condensed:300,300i,400,400i,700,700i|Roboto:100,300,400,400i,700,700i');
   wp_enqueue_style('font-awesom', '//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
   wp_enqueue_style('styleCSS', get_stylesheet_uri(), null, microtime());
+  wp_localize_script('main-js', 'universityData', array(
+    'root_url' => get_site_url(), //tutaj przekazujemy adres początkowy naszej strony abyśmy mogli użyć go do wyszukiwania
+    // opis tego znajduje się w unit 58 15 min
+  ));
 }
 add_action('wp_enqueue_scripts', 'university_files');
 
