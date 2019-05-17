@@ -16,14 +16,14 @@ function pageBanner($args = null)
   }
   ?>
   <div class="page-banner">
-    <div class="page-banner__bg-image" style="background-image: url( 
-                                                                                <?php
-                                                                                // $pageBannerImage = get_field('obraz_banner_background_strony');
-                                                                                // echo $pageBannerImage['url'];
-                                                                                // echo $pageBannerImage['sizes']['pageBanner'];
-                                                                                // echo get_field('obraz_banner_background_strony')['sizes']['pageBanner'];
-                                                                                echo $args['photo'];
-                                                                                ?>);"></div>
+    <div class="page-banner__bg-image" style="background-image: url(
+        <?php
+        // $pageBannerImage = get_field('obraz_banner_background_strony');
+        // echo $pageBannerImage['url'];
+        // echo $pageBannerImage['sizes']['pageBanner'];
+        // echo get_field('obraz_banner_background_strony')['sizes']['pageBanner'];
+        echo $args['photo'];
+        ?>);"></div>
     <div class="page-banner__content container container--narrow">
       <h1 class="page-banner__title"><?php echo $args['title'] ?></h1>
       <div class="page-banner__intro">
