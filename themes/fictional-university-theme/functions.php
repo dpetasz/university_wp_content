@@ -1,4 +1,23 @@
 <?php
+
+require get_theme_file_path('/inc/search-route.php');
+
+//funkcja ospowiadająca za dodawanie niestandardowych danych do jsona w naszych wyszukiwaniach
+function university_custom_rest()
+{
+  register_rest_field('post', 'authorName', array(
+    //tablica będzie potrzebowała tylko jednego argumentu get_collback-wywołanie zwrotne i pola z funkcją która będzie nam zwracać to co chcemy aby sie znalazło w dodatkowym polu
+    'get_callback' => function () {
+      // return 'Autor naszego posta';//przykładowy zwrot dla sprawdzenia
+      return get_the_author();
+    }
+  ));
+  //funkcja przyjmuje trzy argumenty 1. to typ wiadomości którą chcesz dostosować 2. to dowolna nazwa naszego nowego pola 3. to tablica opisująca w jaki sposób chcemy zarządzać typ polem
+  //teraz gdy zajrzymy do naszego jsona to pojawia się nowe pole z naszą nazwą i to co zwracamy
+}
+
+add_action('rest_api_init', 'university_custom_rest');
+
 function pageBanner($args = null)
 {
   if (!$args['title']) {
@@ -17,13 +36,13 @@ function pageBanner($args = null)
   ?>
   <div class="page-banner">
     <div class="page-banner__bg-image" style="background-image: url(
-        <?php
-        // $pageBannerImage = get_field('obraz_banner_background_strony');
-        // echo $pageBannerImage['url'];
-        // echo $pageBannerImage['sizes']['pageBanner'];
-        // echo get_field('obraz_banner_background_strony')['sizes']['pageBanner'];
-        echo $args['photo'];
-        ?>);"></div>
+                    <?php
+                    // $pageBannerImage = get_field('obraz_banner_background_strony');
+                    // echo $pageBannerImage['url'];
+                    // echo $pageBannerImage['sizes']['pageBanner'];
+                    // echo get_field('obraz_banner_background_strony')['sizes']['pageBanner'];
+                    echo $args['photo'];
+                    ?>);"></div>
     <div class="page-banner__content container container--narrow">
       <h1 class="page-banner__title"><?php echo $args['title'] ?></h1>
       <div class="page-banner__intro">
@@ -61,6 +80,7 @@ function university_features()
   add_theme_support('post-thumbnails'); //dodawanie obrazków
   add_image_size('professorLandscape', 400, 260, true); //dodajemy nowe wymiary(1.nazwa 2.szerokość 3. wysokość 4.czy przyciąć)
   add_image_size('professorPortrait', 480, 650, true);
+  add_image_size('pageBanner', 1500, 350, true);
 }
 
 add_action('after_setup_theme', 'university_features');
